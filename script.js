@@ -38,6 +38,17 @@ function calculateCalories(e) {
   
   const breakfastList = document.querySelectorAll('#breakfast input[type="number"]');
   const lunchNumberInputs = document.querySelectorAll('#lunch input[type="number"]');
+  const dinnerNumberInputs = document.querySelectorAll('#dinner input[type="number"]');
+  const snackNumberInputs = document.querySelectorAll('#snack input[type="number"]');
+  const exerciseNumberInputs = document.querySelectorAll('#exercise input[type="number"]');
+  const lunchCalories = getCaloriesFromInputs(lunchNumberInputs);
+  const breakfastCalories = getCaloriesFromInputs(breakfastNumberInputs);
+  const budgetCalories = getCaloriesFromInputs([budgetNumberInput]);
+
+  if (isError) {
+    return;
+  }
+  const consumedCalories = breakfastCalories + lunchCalories +dinnerCalories + snacksCalories;
 }
 
 function getCaloriesFromInputs(list) {
@@ -56,5 +67,6 @@ function getCaloriesFromInputs(list) {
   } 
   return calories;
 }
+
 
 addEntryButton.addEventListener("click", addEntry);
