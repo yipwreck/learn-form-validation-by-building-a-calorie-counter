@@ -32,13 +32,29 @@ function addEntry() {
   targetInputContainer.insertAdjacentHTML('beforeend', HTMLString);
 }
 
+function calculateCalories(e) {
+  e.preventDefault();
+  isError = false;  
+  
+  const breakfastList = document.querySelectorAll('#breakfast input[type="number"]');
+  const lunchNumberInputs = document.querySelectorAll('#lunch input[type="number"]');
+}
+
 function getCaloriesFromInputs(list) {
   let calories = 0;
 
   for (const item of list) {
     const currVal = cleanInputString(item.value);
+    const invalidInputMatch = isInvalidInput(currVal);
 
-  }
+    if (invalidInputMatch) {
+      alert(`Invalid input: ${invalidInputMatch[0]}`);
+      isError = true;
+      return null;
+    }
+    calories += Number(currVal);
+  } 
+  return calories;
 }
 
 addEntryButton.addEventListener("click", addEntry);
